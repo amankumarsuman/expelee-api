@@ -19,6 +19,12 @@ const auditSchema = mongoose.Schema({
   image: {
     type: String,
   },
+  date: {
+    type: String,
+  },
+  desc: {
+    type: String,
+  },
 });
 
 const auditDetail = mongoose.model("AuditDetail", auditSchema);

@@ -26,6 +26,8 @@ router.post("/addAudit", upload.single("image"), (req, res, next) => {
     auditLink: req.body.auditLink,
     nftLink: req.body.nftLink,
     status: req.body.status,
+    desc: req.body.desc,
+    date: req.body.date,
     image: req.file.path,
   });
   audit
@@ -38,6 +40,8 @@ router.post("/addAudit", upload.single("image"), (req, res, next) => {
           auditName: result.auditName,
           contractAddr: result.contractAddr,
           auditLink: result.auditLink,
+          date: result.date,
+          desc: result.desc,
 
           nftLink: result.nftLink,
           status: result.status,
@@ -59,7 +63,9 @@ router.post("/addAudit", upload.single("image"), (req, res, next) => {
 
 router.get("/", (req, res, next) => {
   AuditDetails.find()
-    .select("auditName contractAddr auditLink nftLink status image _id")
+    .select(
+      "auditName contractAddr auditLink nftLink status desc date image _id"
+    )
     .exec()
     .then((docs) => {
       const response = {
